@@ -8,7 +8,6 @@ const images = [
   { url: "https://picsum.photos/id/239/200/300" },
 ];
 
-
 document.getElementById('download-images-button').addEventListener('click',(event)=>{
 
 	let promises = images.map((url)=>{ //creating promise for each of the image url
