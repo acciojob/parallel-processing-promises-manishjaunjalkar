@@ -1,25 +1,8 @@
-const images = [
-  {
-    url: "https://picsum.photos/id/237/200/300",
-    alt: "Image 1",
-  },
-  {
-    url: "https://picsum.photos/id/238/200/300",
-    alt: "Image 2",
-  },
-  {
-    url: "https://picsum.photos/id/239/200/300",
-    alt: "Image 3",
-  }
-
-];
-
 function downloadImages(images) {
-  const promises = images.map(image => {
+  const promises = images.map((image) => {
     return new Promise((resolve, reject) => {
       const img = new Image();
       img.src = image.url;
-      img.alt = image.alt;
       img.onload = () => {
         resolve(img);
       };
@@ -30,19 +13,26 @@ function downloadImages(images) {
   });
 
   Promise.all(promises)
-    .then(imgs => {
+    .then((images) => {
       const output = document.getElementById('output');
-		output.innerHTML = null;
-      imgs.forEach(img => {
+      images.forEach((img) => {
         output.appendChild(img);
       });
     })
-    .catch(error => {
+    .catch((error) => {
       console.error(error);
     });
 }
 
-const button = document.getElementById('download-images-button');
-button.addEventListener('click', () => {
+const images = [
+  { url: 'https://via.placeholder.com/150' },
+  { url: 'https://via.placeholder.com/200' },
+  { url: 'https://via.placeholder.com/250' },
+  { url: 'https://via.placeholder.com/300' },
+  { url: 'https://via.placeholder.com/350' },
+];
+
+const downloadButton = document.getElementById('download-images-button');
+downloadButton.addEventListener('click', () => {
   downloadImages(images);
 });
